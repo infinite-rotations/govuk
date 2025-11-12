@@ -13,7 +13,7 @@ const hoursWorkedPayPeriodPage = new HoursWorkedPayPeriod();
 const infoBasedOnAnswersPage = new InfoBasedOnAnswers();
 
 describe('Holiday entitlement calculator', () => {
-  it('Test ID: T001', () => {
+  it('T001 - Employee works irregular hours', () => {
     cy.visit('/calculate-your-holiday-entitlement');
     cookies.accept();
 
