@@ -41,6 +41,29 @@ export class HoursWorkedPayPeriod {
     return cy.get('[class*="govuk-footer"] [class="govuk-width-container"]');
   }
 
+  /**
+   * Validates the layout and core UI elements of the
+   * GOV.UK "Hours Worked in Pay Period" page within the
+   * Holiday Entitlement Calculator flow.
+   *
+   * This method ensures the page structure, visibility, and
+   * content are as expected. It’s designed to confirm that
+   * the correct question and input field are displayed to
+   * the user for entering hours worked.
+   *
+   * Assertions include:
+   *  - Current URL includes the expected GOV.UK calculator path
+   *    with the correct date segment.
+   *  - Navigation bar is visible.
+   *  - Breadcrumbs are not displayed on this page.
+   *  - Page title contains the correct question text.
+   *  - Body text is intentionally absent.
+   *  - The hours input field and “Continue” button are visible.
+   *  - Contextual sidebar and footer are not present.
+   *  - Feedback prompt and GOV.UK footer are visible.
+   *
+   * @returns {void} Performs Cypress assertions; no return value.
+   */
   validateLayout() {
     this.url.should(
       'include',

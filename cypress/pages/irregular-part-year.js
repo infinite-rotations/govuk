@@ -44,6 +44,26 @@ export class IrregularPartYearPage {
     return cy.get('[class*="govuk-footer"] [class="govuk-width-container"]');
   }
 
+  /**
+   * Validates the layout and key UI elements of the
+   * GOV.UK "Irregular Hours or Part-Year Worker" page.
+   *
+   * This method ensures the page has loaded correctly and that
+   * all expected elements are present, visible, and contain the
+   * correct text content. It is designed for **positive validation**
+   * of the UI and page structure.
+   *
+   * Assertions include:
+   *  - Page URL includes the correct GOV.UK calculator path.
+   *  - Navigation bar is visible, and breadcrumbs do not exist.
+   *  - Page title and body text contain the expected question and description.
+   *  - "Yes" and "No" radio buttons are visible and unchecked by default.
+   *  - Continue button is visible and correctly labelled.
+   *  - Contextual sidebar and footer should not exist on this page.
+   *  - Feedback prompt and GOV.UK footer are visible.
+   *
+   * @returns {void} Performs Cypress assertions; no return value.
+   */
   validateLayout() {
     this.url.should('include', 'https://www.gov.uk/calculate-your-holiday-entitlement/y');
 

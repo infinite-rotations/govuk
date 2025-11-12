@@ -68,6 +68,26 @@ export class LeaveYearStartPage {
     return cy.get('.govuk-form-group .govuk-error-message').first();
   }
 
+  /**
+   * Validates that all key layout and content elements of the
+   * "Leave Year Start" page are visible and correctly rendered.
+   *
+   * This method performs positive UI checks — verifying that expected
+   * page components exist, are visible, and contain the correct text.
+   * It ensures the page is in the correct state before any user input or
+   * functional testing (e.g. before running negative tests).
+   *
+   * Assertions include:
+   *  - URL includes the expected page path.
+   *  - Navigation bar is visible.
+   *  - Breadcrumbs do not exist on this page.
+   *  - Title and body text match expected content.
+   *  - Date input fields and Continue button are present.
+   *  - Contextual sidebar and footer are not displayed.
+   *  - Feedback prompt and GOV.UK footer are visible.
+   *
+   * @returns {void} Performs Cypress assertions only; does not return a value.
+   */
   validateLayout() {
     this.url.should('include', this.expectedPageURL);
 
@@ -96,6 +116,27 @@ export class LeaveYearStartPage {
     this.yearField.parent().clear();
   }
 
+  /**
+   * Runs a suite of negative tests on the "Leave Year Start" page.
+   *
+   * This test method verifies that the form correctly handles invalid or missing inputs
+   * and displays appropriate error messages without navigating away from the page.
+   *
+   * **Note:** This should be executed *before* `validateLayout()`
+   * to ensure the page starts in a clean, unvalidated state.
+   *
+   * Test cases covered:
+   *  1. **No data entered:** Clicking "Continue" without filling in any fields.
+   *  2. **Invalid day:** Day = 99, Month/Year left empty.
+   *  3. **Invalid date combination:** Day = 00, Month = 11, Year = 2025.
+   *
+   * Expected results:
+   *  - Error summary and hint messages appear with "Please answer this question".
+   *  - URL remains the same (no navigation occurs).
+   *  - Fields can be cleared and reused between tests.
+   *
+   * @returns {void} Performs Cypress assertions; does not return a value.
+   */
   runNegativeTests() {
     this.clearFields();
     /**
@@ -126,5 +167,7 @@ export class LeaveYearStartPage {
     this.errorSummary.should('be.visible').and('contain.text', 'Please answer this question');
     this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
     this.url.should('include', this.expectedPageURL);
+
+    this.clearFields();
   }
 }

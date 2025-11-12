@@ -27,14 +27,12 @@ describe('Holiday entitlement calculator', () => {
     irregularPartYearPage.continueButton.click();
 
     cy.log('Page: When does the leave year start?');
+    leaveYearStartPage.runNegativeTests();
     leaveYearStartPage.validateLayout();
     leaveYearStartPage.dayField.type('11');
     leaveYearStartPage.monthField.type('11');
     leaveYearStartPage.yearField.type('2025');
 
-    leaveYearStartPage.runNegativeTests();
-
-    return;
     leaveYearStartPage.continueButton.click();
 
     cy.log('Page: How many hours has the employee worked in the pay period?');
@@ -43,6 +41,6 @@ describe('Holiday entitlement calculator', () => {
     hoursWorkedPayPeriodPage.continueButton.click();
 
     cy.log('Information based on your answers');
-    infoBasedOnAnswersPage.validateLayout();
+    infoBasedOnAnswersPage.validateLayout(); // TO DO
   });
 });
