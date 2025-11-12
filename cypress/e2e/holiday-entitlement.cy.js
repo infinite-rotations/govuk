@@ -3,38 +3,44 @@ import { StartPage } from '../pages/start';
 import { IrregularPartYearPage } from '../pages/irregular-part-year';
 import { LeaveYearStartPage } from '../pages/leave-year-start';
 import { HoursWorkedPayPeriod } from '../pages/hours-worked-pay-period';
+import { InfoBasedOnAnswers } from '../pages/info-based-on-answers';
 
 const cookies = new Cookies();
 const startPage = new StartPage();
 const irregularPartYearPage = new IrregularPartYearPage();
 const leaveYearStartPage = new LeaveYearStartPage();
 const hoursWorkedPayPeriodPage = new HoursWorkedPayPeriod();
+const infoBasedOnAnswersPage = new InfoBasedOnAnswers();
 
 describe('Holiday entitlement calculator', () => {
   it('Test ID: T001', () => {
     cy.visit('/calculate-your-holiday-entitlement');
     cookies.accept();
 
-    cy.log('Page: Start');
+    cy.log('Page: Calculate holiday entitlement');
     startPage.validateLayout();
     startPage.startButton.click();
 
-    cy.log('Page: Irregular / part / year');
+    cy.log(
+      'Page: Does the employee work irregular hours or for part of the year?'
+    );
     irregularPartYearPage.validateLayout();
     irregularPartYearPage.radioButtonYes.click();
     irregularPartYearPage.continueButton.click();
 
-    cy.log('Page: Leave year');
+    cy.log('Page: When does the leave year start?');
     leaveYearStartPage.validateLayout();
     leaveYearStartPage.dayField.type('11');
     leaveYearStartPage.monthField.type('11');
     leaveYearStartPage.yearField.type('2025');
     leaveYearStartPage.continueButton.click();
 
-    cy.log('Page: Hours worked in the pay period');
+    cy.log('Page: How many hours has the employee worked in the pay period?');
     hoursWorkedPayPeriodPage.validateLayout();
+    hoursWorkedPayPeriodPage.hoursInputField.type('160');
+    hoursWorkedPayPeriodPage.continueButton.click();
 
-    // How many hours has the employee worked in the pay period?	Input: 160
-    // Information based on your answers
+    cy.log('Information based on your answers');
+    infoBasedOnAnswersPage.validateLayout();
   });
 });
