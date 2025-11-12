@@ -1,4 +1,4 @@
-import { Cookies } from '../pages/utils/cookies';
+import { Cookies } from '../utils/cookies';
 import { StartPage } from '../pages/start';
 import { IrregularPartYearPage } from '../pages/irregular-part-year';
 import { LeaveYearStartPage } from '../pages/leave-year-start';
@@ -31,6 +31,10 @@ describe('Holiday entitlement calculator', () => {
     leaveYearStartPage.dayField.type('11');
     leaveYearStartPage.monthField.type('11');
     leaveYearStartPage.yearField.type('2025');
+
+    leaveYearStartPage.runNegativeTests();
+
+    return;
     leaveYearStartPage.continueButton.click();
 
     cy.log('Page: How many hours has the employee worked in the pay period?');

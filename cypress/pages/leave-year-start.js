@@ -1,7 +1,11 @@
 export class LeaveYearStartPage {
+  expectedPageURL = 'https://www.gov.uk/calculate-your-holiday-entitlement/y';
+
   get url() {
     return cy.url();
   }
+
+  // Standard page elements
 
   get navBar() {
     return cy.get('[class*="super-navigation-header__container"]');
@@ -54,8 +58,18 @@ export class LeaveYearStartPage {
     return cy.get('[class*="govuk-footer"] [class="govuk-width-container"]');
   }
 
+  // Error elements
+
+  get errorSummary() {
+    return cy.get('[data-module^="ga4-auto-tracker govuk-error-summary"]');
+  }
+
+  get errorHint() {
+    return cy.get('.govuk-form-group .govuk-error-message').first();
+  }
+
   validateLayout() {
-    this.url.should('include', 'https://www.gov.uk/calculate-your-holiday-entitlement/y');
+    this.url.should('include', this.expectedPageURL);
 
     this.navBar.should('be.visible');
     this.breadcrumbs.should('not.exist');
@@ -71,5 +85,46 @@ export class LeaveYearStartPage {
     this.contextualFooter.should('not.exist');
     this.feedbackPrompt.should('be.visible');
     this.govFooter.should('be.visible');
+  }
+
+  /**
+   * Clears the input fields for MM/DD/YYYY.
+   */
+  clearFields() {
+    this.dayField.parent().clear();
+    this.monthField.parent().clear();
+    this.yearField.parent().clear();
+  }
+
+  runNegativeTests() {
+    this.clearFields();
+    /**
+     * No data entered
+     */
+    this.continueButton.click();
+    this.errorSummary.should('be.visible').and('contain.text', 'Please answer this question');
+    this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
+    this.url.should('include', this.expectedPageURL);
+
+    /**
+     * Invalid day, nothing in MM/YYYY
+     */
+    this.dayField.type('99');
+    this.continueButton.click();
+    this.errorSummary.should('be.visible').and('contain.text', 'Please answer this question');
+    this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
+    this.url.should('include', this.expectedPageURL);
+
+    /**
+     * Invalid month, valid MM/YYYY
+     */
+    this.clearFields();
+    this.dayField.type('00');
+    this.monthField.type('11');
+    this.yearField.type('2025');
+    this.continueButton.click();
+    this.errorSummary.should('be.visible').and('contain.text', 'Please answer this question');
+    this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
+    this.url.should('include', this.expectedPageURL);
   }
 }
