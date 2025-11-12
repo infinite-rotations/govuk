@@ -30,6 +30,21 @@ export class InfoBasedOnAnswers {
     return cy.get('[class*="govuk-footer"] [class="govuk-width-container"]');
   }
 
+  /**
+   * Validates the layout of the Holiday Entitlement page for irregular hours and part-year cases.
+   *
+   * This method performs the following checks using Cypress:
+   *  - Ensures the URL includes the correct page path.
+   *  - Verifies the navigation bar is visible.
+   *  - Checks the page title contains the expected text.
+   *  - Checks the body contains the expected statutory entitlement text.
+   *  - Ensures the contextual sidebar is visible.
+   *  - Ensures the contextual footer does NOT exist.
+   *  - Checks that the feedback prompt is visible.
+   *  - Checks that the GOV.UK footer is visible.
+   *
+   * @returns {void} This method performs assertions using Cypress; it does not return a value.
+   */
   validateLayout() {
     this.url.should(
       'include',
