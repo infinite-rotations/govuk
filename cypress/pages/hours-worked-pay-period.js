@@ -1,4 +1,4 @@
-export class LeaveYearStartPage {
+export class HoursWorkedPayPeriod {
   get url() {
     return cy.url();
   }
