@@ -1,0 +1,52 @@
+Start
+
+    Does the employee work irregular hours or for part of the year?
+
+        Yes:
+
+            When does the leave year start?
+                Input fields: DD/MM/YYYY
+                Button: Continue
+
+            Is the holiday entitlement based on:
+                Radio button: days worked per week // Selected option
+                Radio button: hours worked per week // TO DO
+                Radio button: annualised hours // TO DO
+                Radio button: compressed hours // TO DO
+                Radio button: shifts // TO DO
+                Button: Continue
+
+            Do you want to work out holiday:
+                Radio button: for a full leave year // Selected option
+                Radio button: for someone starting part way through a leave year  // TO DO
+                Radio button: for someone leaving part way through a leave year // TO DO
+                Radio button: for someone starting and leaving part way through a leave year // TO DO
+                Button: Continue
+
+            Number of days worked per week?
+                Input field: 1-7
+                Button: Continue
+            
+            Results page
+        
+        No:
+            Is the holiday entitlement based on:
+                Radio button: days worked per week // Selected option
+                Radio button: hours worked per week // TO DO
+                Radio button: annualised hours // TO DO
+                Radio button: compressed hours // TO DO
+                Radio button: shifts // TO DO
+                Button: Continue
+
+            Do you want to work out holiday:
+                Radio button: for a full leave year // Selected option
+                Radio button: for someone starting part way through a leave year  // TO DO
+                Radio button: for someone leaving part way through a leave year // TO DO
+                Radio button: for someone starting and leaving part way through a leave year // TO DO
+                Button: Continue
+
+            Number of days worked per week?
+                Input field: 1-7
+                Button: Continue
+
+            Results page
