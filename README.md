@@ -18,11 +18,15 @@ Clone project: https://github.com/infinite-rotations/govuk.git
 
 ### Executing
 
-```
 Headed mode:
+
+```
 npm run cypress:open
+```
 
 Headless mode:
+
+```
 npm run cypress:run
 ```
 
