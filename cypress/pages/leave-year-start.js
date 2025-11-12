@@ -18,22 +18,13 @@ export class LeaveYearStartPage {
   }
 
   get dayField() {
-    return cy
-      .get('[class^="gem-c-input govuk-input"]')
-      .parent()
-      .contains('Day');
+    return cy.get('[class^="gem-c-input govuk-input"]').parent().contains('Day');
   }
   get monthField() {
-    return cy
-      .get('[class^="gem-c-input govuk-input"]')
-      .parent()
-      .contains('Month');
+    return cy.get('[class^="gem-c-input govuk-input"]').parent().contains('Month');
   }
   get yearField() {
-    return cy
-      .get('[class^="gem-c-input govuk-input"]')
-      .parent()
-      .contains('Year');
+    return cy.get('[class^="gem-c-input govuk-input"]').parent().contains('Year');
   }
 
   get radioButtonYes() {
@@ -64,16 +55,11 @@ export class LeaveYearStartPage {
   }
 
   validateLayout() {
-    this.url.should(
-      'include',
-      'https://www.gov.uk/calculate-your-holiday-entitlement/y'
-    );
+    this.url.should('include', 'https://www.gov.uk/calculate-your-holiday-entitlement/y');
 
     this.navBar.should('be.visible');
     this.breadcrumbs.should('not.exist');
-    this.titleText
-      .should('be.visible')
-      .and('contain.text', 'When does the leave year start?');
+    this.titleText.should('be.visible').and('contain.text', 'When does the leave year start?');
     this.bodyText
       .should('be.visible')
       .and('contain.text', 'This is usually in the employment contract.');

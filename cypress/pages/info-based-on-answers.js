@@ -48,20 +48,15 @@ export class InfoBasedOnAnswers {
   validateLayout() {
     this.url.should(
       'include',
-      'https://www.gov.uk/calculate-your-holiday-entitlement/y/irregular-hours-and-part-year/'
+      'https://www.gov.uk/calculate-your-holiday-entitlement/y/irregular-hours-and-part-year/',
     );
 
     this.navBar.should('be.visible');
     // Use object to validate text?
-    this.titleText
-      .should('be.visible')
-      .and('contain.text', 'Information based on your answers');
+    this.titleText.should('be.visible').and('contain.text', 'Information based on your answers');
     this.bodyText
       .should('be.visible')
-      .and(
-        'contain.text',
-        'The statutory entitlement for this pay period is 19 hours.'
-      );
+      .and('contain.text', 'The statutory entitlement for this pay period is 19 hours.');
 
     this.contextualSideBar.should('be.visible');
     this.contextualFooter.should('not.exist');

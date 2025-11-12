@@ -44,17 +44,14 @@ export class HoursWorkedPayPeriod {
   validateLayout() {
     this.url.should(
       'include',
-      'https://www.gov.uk/calculate-your-holiday-entitlement/y/irregular-hours-and-part-year/2025-11-11'
+      'https://www.gov.uk/calculate-your-holiday-entitlement/y/irregular-hours-and-part-year/2025-11-11',
     );
 
     this.navBar.should('be.visible');
     this.breadcrumbs.should('not.exist');
     this.titleText
       .should('be.visible')
-      .and(
-        'contain.text',
-        'How many hours has the employee worked in the pay period?'
-      );
+      .and('contain.text', 'How many hours has the employee worked in the pay period?');
     this.bodyText.should('not.exist');
     this.hoursInputField.should('be.visible');
     this.continueButton.should('be.visible').and('contain.text', 'Continue');

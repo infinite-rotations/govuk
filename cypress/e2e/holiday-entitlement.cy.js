@@ -21,9 +21,7 @@ describe('Holiday entitlement calculator', () => {
     startPage.validateLayout();
     startPage.startButton.click();
 
-    cy.log(
-      'Page: Does the employee work irregular hours or for part of the year?'
-    );
+    cy.log('Page: Does the employee work irregular hours or for part of the year?');
     irregularPartYearPage.validateLayout();
     irregularPartYearPage.radioButtonYes.click();
     irregularPartYearPage.continueButton.click();

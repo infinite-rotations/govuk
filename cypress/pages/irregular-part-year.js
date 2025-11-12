@@ -45,25 +45,16 @@ export class IrregularPartYearPage {
   }
 
   validateLayout() {
-    this.url.should(
-      'include',
-      'https://www.gov.uk/calculate-your-holiday-entitlement/y'
-    );
+    this.url.should('include', 'https://www.gov.uk/calculate-your-holiday-entitlement/y');
 
     this.navBar.should('be.visible');
     this.breadcrumbs.should('not.exist');
     this.titleText
       .should('be.visible')
-      .and(
-        'contain.text',
-        'Does the employee work irregular hours or for part of the year?'
-      );
+      .and('contain.text', 'Does the employee work irregular hours or for part of the year?');
     this.bodyText
       .should('be.visible')
-      .and(
-        'contain.text',
-        '‘Irregular hours’ means the number of hours an employee'
-      );
+      .and('contain.text', '‘Irregular hours’ means the number of hours an employee');
     this.radioButtonYes.should('be.visible').and('not.be.checked');
     this.radioButtonNo.should('be.visible').and('not.to.be.checked');
     this.continueButton.should('be.visible').and('contain.text', 'Continue');

@@ -4,8 +4,9 @@
   "description": "gov.uk test suite",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "npx cypress open",
-    "cypress:run": "npx cypress run"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "format": "prettier --write ."
   },
   "author": "Lee Barnes",
   "license": "ISC",

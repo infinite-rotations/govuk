@@ -38,31 +38,22 @@ export class StartPage {
   }
 
   validateLayout() {
-    this.url.should(
-      'include',
-      'https://www.gov.uk/calculate-your-holiday-entitlement'
-    );
+    this.url.should('include', 'https://www.gov.uk/calculate-your-holiday-entitlement');
 
     this.navBar.should('be.visible');
 
     this.breadcrumbs.should('be.visible');
 
-    this.titleText
-      .should('be.visible')
-      .and('contain.text', 'Calculate holiday entitlement');
+    this.titleText.should('be.visible').and('contain.text', 'Calculate holiday entitlement');
 
     this.bodyText
       .should('be.visible')
       .and('contain.text', 'Use this tool to calculate holiday entitlement');
 
     this.startButton.should('be.visible').and('contain.text', 'Start now');
-    this.contextualSideBar
-      .should('be.visible')
-      .and('contain.text', 'Related content');
+    this.contextualSideBar.should('be.visible').and('contain.text', 'Related content');
 
-    this.contextualFooter
-      .should('be.visible')
-      .and('contain.text', 'Explore the topic');
+    this.contextualFooter.should('be.visible').and('contain.text', 'Explore the topic');
 
     this.feedbackPrompt.should('be.visible');
 
