@@ -52,6 +52,7 @@ describe('Holiday entitlement calculator', () => {
   });
 
   it(`T002 - No irregular hours, days per week, full leave year`, () => {
+    cy.log('Page: Calculate holiday entitlement');
     startPage.startButton.click();
 
     cy.log('Page: Does the employee work irregular hours or for part of the year?');
@@ -59,23 +60,23 @@ describe('Holiday entitlement calculator', () => {
     irregularPartYearPage.radioButtonNo.click();
     irregularPartYearPage.continueButton.click();
 
-    cy.log('Is the holiday entitlement based on');
+    cy.log('Page: Is the holiday entitlement based on');
     entitlementBasedOnPage.runNegativeTests();
     entitlementBasedOnPage.radioButtonDaysPerWeek.click();
     entitlementBasedOnPage.continueButton.click();
 
-    cy.log('Do you want to work out holiday');
+    cy.log('Page: Do you want to work out holiday');
     workOutHolidayPage.runNegativeTests();
     workOutHolidayPage.radioButtonFullYear.click();
     workOutHolidayPage.continueButton.click();
 
-    cy.log('Number of days worked per week?');
+    cy.log('Page: Number of days worked per week?');
     daysWorkedPerWeekPage.runNegativeTests();
     daysWorkedPerWeekPage.validateLayout();
     daysWorkedPerWeekPage.daysInputField.type('5');
     daysWorkedPerWeekPage.continueButton.click();
 
-    cy.log('Information based on your answers');
+    cy.log('Page: Information based on your answers');
     infoBasedOnAnswersPage.validateLayout();
   });
 
