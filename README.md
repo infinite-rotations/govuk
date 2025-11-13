@@ -14,11 +14,9 @@ The suite can be run in headed mode for interactive debugging or headless mode f
 
 ### Installing
 
-- Clone project: https://github.com/infinite-rotations/govuk.git
-- Run npm i
-- Launch via the scrips - see below
-
-### Executing
+1. Clone project: https://github.com/infinite-rotations/govuk.git
+2. Run npm i
+3. Launch via the relevant script:
 
 Headed mode:
 
