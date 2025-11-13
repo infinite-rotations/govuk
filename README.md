@@ -1,4 +1,4 @@
-# GOV.UK Holiday Entitlement Tests
+# GOV.UK Holiday Entitlement Automated Test Suite
 
 Automated Cypress tests for the **Holiday Entitlement Calculator** pages on GOV.UK  
 (https://www.gov.uk/calculate-your-holiday-entitlement)
