@@ -6,7 +6,6 @@ export class LeaveYearStartPage {
   }
 
   // Standard page elements
-
   get navBar() {
     return cy.get('[class*="super-navigation-header__container"]');
   }
@@ -59,7 +58,6 @@ export class LeaveYearStartPage {
   }
 
   // Error elements
-
   get errorSummary() {
     return cy.get('[data-module^="ga4-auto-tracker govuk-error-summary"]');
   }

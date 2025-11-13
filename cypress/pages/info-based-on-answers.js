@@ -50,9 +50,7 @@ export class InfoBasedOnAnswers {
    */
   validateLayout() {
     this.url.should('include', 'https://www.gov.uk/calculate-your-holiday-entitlement/y/');
-
     this.navBar.should('be.visible');
-    // Use object to validate text?
     this.titleText.should('be.visible').and('contain.text', 'Information based on your answers');
     this.bodyText.should('be.visible').and('contain.text', 'The statutory');
     this.contextualSideBar.should('be.visible');
