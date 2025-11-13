@@ -175,6 +175,7 @@ export class LeaveYearStartPage {
     this.errorSummary.should('be.visible').and('contain.text', 'Please answer this question');
     this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
     this.url.should('include', this.expectedPageURL);
+    this.clearFields();
 
     /**
      * Invalid chars
