@@ -69,24 +69,22 @@ export class LeaveYearStartPage {
   }
 
   /**
-   * Validates that all key layout and content elements of the
-   * "Leave Year Start" page are visible and correctly rendered.
+   * Validates that all key UI elements on the **"Leave Year Start"** page
+   * of the GOV.UK Holiday Entitlement Calculator are present, visible,
+   * and contain the expected text.
    *
-   * This method performs positive UI checks — verifying that expected
-   * page components exist, are visible, and contain the correct text.
-   * It ensures the page is in the correct state before any user input or
-   * functional testing (e.g. before running negative tests).
+   * This ensures that the page layout renders correctly and that no
+   * essential components (navigation, footer, or prompts) are missing.
    *
-   * Assertions include:
-   *  - URL includes the expected page path.
-   *  - Navigation bar is visible.
-   *  - Breadcrumbs do not exist on this page.
-   *  - Title and body text match expected content.
-   *  - Date input fields and Continue button are present.
-   *  - Contextual sidebar and footer are not displayed.
-   *  - Feedback prompt and GOV.UK footer are visible.
+   * Checks performed:
+   *  - Confirms the browser is on the expected URL (`this.expectedPageURL`).
+   *  - Verifies visibility of key elements: navigation bar, title, form fields,
+   *    and footer components.
+   *  - Ensures text content matches expected headings and body copy.
+   *  - Confirms that elements which should not appear (e.g., contextual sidebar/footer)
+   *    are correctly absent.
    *
-   * @returns {void} Performs Cypress assertions only; does not return a value.
+   * @returns {void} Performs Cypress assertions; no return value.
    */
   validateLayout() {
     this.url.should('include', this.expectedPageURL);
@@ -126,31 +124,27 @@ export class LeaveYearStartPage {
         cy.wrap($el).clear();
       }
     });
-    // this.dayField.parent().clear();
-    // this.monthField.parent().clear();
-    // this.yearField.parent().clear();
   }
 
   /**
-   * Runs a suite of negative tests on the "Leave Year Start" page.
+   * Executes a suite of **negative test cases** for the
+   * "Leave Year Start" page in the GOV.UK Holiday Entitlement Calculator.
    *
-   * This test method verifies that the form correctly handles invalid or missing inputs
-   * and displays appropriate error messages without navigating away from the page.
+   * This method verifies that the form correctly handles invalid or missing input
+   * by displaying appropriate error messages and preventing navigation.
    *
-   * **Note:** This should be executed *before* `validateLayout()`
-   * to ensure the page starts in a clean, unvalidated state.
+   * Scenarios covered:
+   *  1. **No data entered** — user submits an empty form.
+   *  2. **Invalid day** — day field contains invalid value (e.g. `99`), with missing month/year.
+   *  3. **Invalid month** — day set to `00`, invalid month combination with valid year.
+   *  4. **Invalid characters** — non-numeric input (e.g. `!`) in date fields.
    *
-   * Test cases covered:
-   *  1. **No data entered:** Clicking "Continue" without filling in any fields.
-   *  2. **Invalid day:** Day = 99, Month/Year left empty.
-   *  3. **Invalid date combination:** Day = 00, Month = 11, Year = 2025.
+   * Each scenario checks that:
+   *  - The error summary and inline error hints appear and contain expected text.
+   *  - The page URL remains unchanged (`this.expectedPageURL`).
+   *  - Fields are cleared between test runs.
    *
-   * Expected results:
-   *  - Error summary and hint messages appear with "Please answer this question".
-   *  - URL remains the same (no navigation occurs).
-   *  - Fields can be cleared and reused between tests.
-   *
-   * @returns {void} Performs Cypress assertions; does not return a value.
+   * @returns {void} Performs Cypress assertions; no return value.
    */
   runNegativeTests() {
     /**
@@ -169,11 +163,11 @@ export class LeaveYearStartPage {
     this.errorSummary.should('be.visible').and('contain.text', 'Please answer this question');
     this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
     this.url.should('include', this.expectedPageURL);
+    this.clearFields();
 
     /**
      * Invalid month, valid MM/YYYY
      */
-    this.clearFields();
     this.dayField.type('00');
     this.monthField.type('11');
     this.yearField.type('2025');
@@ -185,7 +179,6 @@ export class LeaveYearStartPage {
     /**
      * Invalid chars
      */
-    this.clearFields();
     this.dayField.type('!');
     this.monthField.type('11');
     this.yearField.type('2025');
@@ -193,7 +186,6 @@ export class LeaveYearStartPage {
     this.errorSummary.should('be.visible').and('contain.text', 'Please answer this question');
     this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
     this.url.should('include', this.expectedPageURL);
-
-    this.clearFields(); // Leave in a clean state
+    this.clearFields();
   }
 }

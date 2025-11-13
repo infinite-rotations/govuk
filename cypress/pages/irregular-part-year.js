@@ -45,21 +45,23 @@ export class IrregularPartYearPage {
   }
 
   /**
-   * Validates the layout and key UI elements of the
-   * GOV.UK "Irregular Hours or Part-Year Worker" page.
+   * Validates the layout and core UI elements of the
+   * "Irregular hours or part-year" question page in the
+   * GOV.UK Holiday Entitlement Calculator flow.
    *
-   * This method ensures the page has loaded correctly and that
-   * all expected elements are present, visible, and contain the
-   * correct text content. It is designed for **positive validation**
-   * of the UI and page structure.
+   * This method ensures that the page renders correctly and
+   * all interactive and informational elements are visible and
+   * contain the expected content before user interaction.
    *
    * Assertions include:
-   *  - Page URL includes the correct GOV.UK calculator path.
-   *  - Navigation bar is visible, and breadcrumbs do not exist.
-   *  - Page title and body text contain the expected question and description.
-   *  - "Yes" and "No" radio buttons are visible and unchecked by default.
+   *  - URL includes the correct question path segment.
+   *  - Navigation bar is visible.
+   *  - Breadcrumbs are not displayed on this step.
+   *  - Title text matches the expected question.
+   *  - Body text correctly explains the meaning of irregular hours.
+   *  - Both radio buttons (“Yes” / “No”) are visible and unselected.
    *  - Continue button is visible and correctly labelled.
-   *  - Contextual sidebar and footer should not exist on this page.
+   *  - Contextual sidebar and footer are not displayed.
    *  - Feedback prompt and GOV.UK footer are visible.
    *
    * @returns {void} Performs Cypress assertions; no return value.

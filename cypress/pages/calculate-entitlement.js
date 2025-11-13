@@ -38,19 +38,21 @@ export class StartPage {
   }
 
   /**
-   * Validates the layout and key UI elements of the
-   * GOV.UK "Holiday Entitlement Calculator" start page.
+   * Validates the layout and key UI components of the
+   * GOV.UK Holiday Entitlement Calculator **start page**.
    *
-   * This function performs positive assertions to ensure that the
-   * page has loaded correctly and all expected sections are visible.
-   * It checks the structure, key texts, and core interactive elements.
+   * This method ensures the start page renders correctly and all
+   * key interface elements are visible and contain the expected content.
+   * It verifies the presence of navigation, headings, body copy, and
+   * actionable elements required to begin the user journey.
    *
    * Assertions include:
-   *  - Page URL includes the correct GOV.UK calculator path.
+   *  - URL includes the correct GOV.UK calculator base path.
    *  - Navigation bar and breadcrumbs are visible.
-   *  - Page title and body text contain the expected content.
+   *  - Page title displays the correct heading text.
+   *  - Body text contains the expected introductory message.
    *  - “Start now” button is visible and correctly labelled.
-   *  - Contextual sidebar and footer contain the correct sections.
+   *  - Contextual sidebar and footer are visible with correct labels.
    *  - Feedback prompt and GOV.UK footer are visible.
    *
    * @returns {void} Performs Cypress assertions; no return value.

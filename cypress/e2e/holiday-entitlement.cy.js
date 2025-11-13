@@ -4,6 +4,9 @@ import { IrregularPartYearPage } from '../pages/irregular-part-year';
 import { LeaveYearStartPage } from '../pages/leave-year-start';
 import { HoursWorkedPayPeriod } from '../pages/hours-worked-pay-period';
 import { InfoBasedOnAnswers } from '../pages/info-based-on-answers';
+import { EntitlementBasedOnPage } from '../pages/entitlement-based-on';
+import { WorkOutHolidayPage } from '../pages/work-out-holiday';
+import { DaysWorkedPerWeekPage } from '../pages/days-worked-week';
 
 const cookies = new Cookies();
 const startPage = new StartPage();
@@ -11,12 +14,17 @@ const irregularPartYearPage = new IrregularPartYearPage();
 const leaveYearStartPage = new LeaveYearStartPage();
 const hoursWorkedPayPeriodPage = new HoursWorkedPayPeriod();
 const infoBasedOnAnswersPage = new InfoBasedOnAnswers();
+const entitlementBasedOnPage = new EntitlementBasedOnPage();
+const workOutHolidayPage = new WorkOutHolidayPage();
+const daysWorkedPerWeekPage = new DaysWorkedPerWeekPage();
+
+beforeEach(() => {
+  cy.visit('/calculate-your-holiday-entitlement');
+  cookies.accept();
+});
 
 describe('Holiday entitlement calculator', () => {
   it('T001 - Employee works irregular hours', () => {
-    cy.visit('/calculate-your-holiday-entitlement');
-    cookies.accept();
-
     cy.log('Page: Calculate holiday entitlement');
     startPage.validateLayout();
     startPage.startButton.click();
@@ -43,13 +51,32 @@ describe('Holiday entitlement calculator', () => {
     infoBasedOnAnswersPage.validateLayout();
   });
 
-  it.skip(`T002 - No irregular hours, days per week, full leave year`, () => {
-    throw new Error('Test not yet implemented');
-    // T002	Start	Click Start button
-    // Does the employee work irregular hours or for part of the year?	Radio: No
-    // Is the holiday entitlement based on	Radio: days worked per week
-    // Do you want to work out holiday	Radio: for a full leave year
-    // Information based on your answers	Validate page
+  it(`T002 - No irregular hours, days per week, full leave year`, () => {
+    startPage.startButton.click();
+
+    cy.log('Page: Does the employee work irregular hours or for part of the year?');
+    irregularPartYearPage.validateLayout();
+    irregularPartYearPage.radioButtonNo.click();
+    irregularPartYearPage.continueButton.click();
+
+    cy.log('Is the holiday entitlement based on');
+    entitlementBasedOnPage.runNegativeTests();
+    entitlementBasedOnPage.radioButtonDaysPerWeek.click();
+    entitlementBasedOnPage.continueButton.click();
+
+    cy.log('Do you want to work out holiday');
+    workOutHolidayPage.runNegativeTests();
+    workOutHolidayPage.radioButtonFullYear.click();
+    workOutHolidayPage.continueButton.click();
+
+    cy.log('Number of days worked per week?');
+    daysWorkedPerWeekPage.runNegativeTests();
+    daysWorkedPerWeekPage.validateLayout();
+    daysWorkedPerWeekPage.daysInputField.type('5');
+    daysWorkedPerWeekPage.continueButton.click();
+
+    cy.log('Information based on your answers');
+    infoBasedOnAnswersPage.validateLayout();
   });
 
   it.skip(`T003 - No irregular hours, days per week, starting part way through year `, () => {
