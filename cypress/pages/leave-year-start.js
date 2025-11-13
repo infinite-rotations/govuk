@@ -111,9 +111,24 @@ export class LeaveYearStartPage {
    * Clears the input fields for MM/DD/YYYY.
    */
   clearFields() {
-    this.dayField.parent().clear();
-    this.monthField.parent().clear();
-    this.yearField.parent().clear();
+    this.dayField.parent().then(($el) => {
+      if ($el.length > 0) {
+        cy.wrap($el).clear();
+      }
+    });
+    this.monthField.parent().then(($el) => {
+      if ($el.length > 0) {
+        cy.wrap($el).clear();
+      }
+    });
+    this.yearField.parent().then(($el) => {
+      if ($el.length > 0) {
+        cy.wrap($el).clear();
+      }
+    });
+    // this.dayField.parent().clear();
+    // this.monthField.parent().clear();
+    // this.yearField.parent().clear();
   }
 
   /**
@@ -138,7 +153,6 @@ export class LeaveYearStartPage {
    * @returns {void} Performs Cypress assertions; does not return a value.
    */
   runNegativeTests() {
-    this.clearFields();
     /**
      * No data entered
      */
@@ -168,6 +182,18 @@ export class LeaveYearStartPage {
     this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
     this.url.should('include', this.expectedPageURL);
 
+    /**
+     * Invalid chars
+     */
     this.clearFields();
+    this.dayField.type('!');
+    this.monthField.type('11');
+    this.yearField.type('2025');
+    this.continueButton.click();
+    this.errorSummary.should('be.visible').and('contain.text', 'Please answer this question');
+    this.errorHint.should('be.visible').and('contain.text', 'Please answer this question');
+    this.url.should('include', this.expectedPageURL);
+
+    this.clearFields(); // Leave in a clean state
   }
 }

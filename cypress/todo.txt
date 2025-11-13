@@ -1,3 +1,0 @@
-1. Understand flows
-2. Add assertions
-3. Add js docs

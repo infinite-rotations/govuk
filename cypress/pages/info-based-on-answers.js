@@ -56,7 +56,11 @@ export class InfoBasedOnAnswers {
     this.titleText.should('be.visible').and('contain.text', 'Information based on your answers');
     this.bodyText
       .should('be.visible')
-      .and('contain.text', 'The statutory entitlement for this pay period is 19 hours.');
+      .and('contain.text', 'The statutory entitlement for this pay period is 19 hours.')
+      .and(
+        'contain.text',
+        'Employees cannot accrue more than 28 days (5.6 weeks) over the leave year.',
+      );
 
     this.contextualSideBar.should('be.visible');
     this.contextualFooter.should('not.exist');
